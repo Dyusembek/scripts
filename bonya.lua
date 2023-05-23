@@ -22,7 +22,7 @@ local script_vers = 2
 local script_vers_text = '1.01'
 local update_url = 'https://raw.githubusercontent.com/Dyusembek/scripts/main/update.ini'
 local update_path = getWorkingDirectory()..'/update.ini'
-local script_url = ''
+local script_url = 'https://github.com/Dyusembek/scripts/blob/master/bonya.lua?raw=true'
 local script_path = thisScript().path
 function main()
 	if not isSampLoaded() or not isSampfuncsLoaded then return end
