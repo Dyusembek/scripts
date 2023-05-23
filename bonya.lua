@@ -34,7 +34,7 @@ function main()
 			if status == dlstatus.STATUS_ENDDOWNLOADDATA then
 				updateIni = inicfg.load(nil, update_path)
 				if tonumber(updateIni.info.vers) > script_vers then
-					chatmsg("Есть обновление! Версия: " .. updateIni.info.vers_text, -1)
+					chatmsg("Вышло обновление: Версия: " .. updateIni.info.vers_text, -1)
 					update_state = true
 				end
 				os.remove(update_path)
@@ -62,7 +62,7 @@ function main()
 		if update_state then
             downloadUrlToFile(script_url, script_path, function(id, status)
                 if status == dlstatus.STATUS_ENDDOWNLOADDATA then
-                    sampAddChatMessage("Скрипт успешно обновлен!", -1)
+                    sampAddChatMessage("Скрипт обновлён!", -1)
                     thisScript():reload()
                 end
             end)
@@ -76,7 +76,7 @@ function main()
 		end
 		if wasKeyPressed(VK_NUMPAD1) then
 			sampSetChatInputEnabled(true)
-			sampSetChatInputText('/r [Стажёр ВМТО]: ')
+			sampSetChatInputText('/r ')
 		end
 	end
 end
@@ -94,7 +94,7 @@ function imgui.OnDrawFrame()
 		imgui.ShowCursor = true
 		local ScreenX, ScreenY = getScreenResolution()
 		imgui.SetNextWindowPos(imgui.ImVec2(ScreenX/2, ScreenY/2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
-		imgui.Begin(u8'ALPHA SCRIPT | Настройки скрипта', cmdwind, imgui.WindowFlags.NoResize)
+		imgui.Begin(u8'ALPHA SCRIPT | тест', cmdwind, imgui.WindowFlags.NoResize)
 		imgui.Text(u8'test')
 		imgui.End()
 	end
@@ -103,7 +103,7 @@ function cmd_test()
 	chatmsg('test')
 end
 function cmd_radio(arg)
-	sampSetChatInputText('/r [Стажёр ВМТО]: '..arg)
+	chatmsg('/r [Стажёр ВМТО]: '..arg)
 end 
 function chatmsg(text)
     sampAddChatMessage(string.format("[LUA]: {FFFFFF}%s", text),  0xFF0000)
