@@ -47,6 +47,7 @@ function main()
 	if not isSampLoaded() or not isSampfuncsLoaded then return end
 	while not isSampAvailable() do wait(100) end
 		chatmsg('Скрипт by Bonya - запущен')
+		prepare()
 		while not preparecomplete do wait(0) end
 		if not doesDirectoryExist('moonloader/config') then createDirectory('moonloader/config') end
 		if newIni == nil then
