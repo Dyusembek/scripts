@@ -4,7 +4,7 @@ require 'lib.sampfuncs'
 local dlstatus 			= require('moonloader').download_status
 local requests 			= require('requests')
 local res, sampev 		= pcall(require,'lib.samp.events')
-local inicfg 			= require 'inicfg'
+local inicfg 			= require ('inicfg')
 local lmemory, memory 	= pcall(require, 'memory')
 local imgui, ffi = require 'mimgui', require 'ffi'
 local lsphere, Sphere	= pcall(require, 'Sphere')
