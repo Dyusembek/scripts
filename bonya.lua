@@ -34,10 +34,10 @@ local scriptBase = {
 	[1] = {},
 }
 local script_vers = 3
-local script_vers_text = '1.02'
-local update_url = 'https://raw.githubusercontent.com/Dyusembek/scripts/main/update.ini'
+local script_vers_text = '1.03'
+local update_url = "https://raw.githubusercontent.com/Dyusembek/scripts/main/update.ini"
 local update_path = getWorkingDirectory()..'/update.ini'
-local script_url = 'https://github.com/Dyusembek/scripts/blob/main/bonya.lua?raw=true'
+local script_url = "https://github.com/Dyusembek/scripts/blob/main/bonya.lua?raw=true"
 local script_path = thisScript().path
 local imMenu = new.bool()
 local imKeys = {
@@ -47,7 +47,6 @@ function main()
 	if not isSampLoaded() or not isSampfuncsLoaded then return end
 	while not isSampAvailable() do wait(100) end
 		chatmsg('Скрипт by Bonya - запущен')
-		prepare()
 		while not preparecomplete do wait(0) end
 		if not doesDirectoryExist('moonloader/config') then createDirectory('moonloader/config') end
 		if newIni == nil then
