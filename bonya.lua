@@ -78,8 +78,8 @@ function main()
 					update_state = false
                     thisScript():reload()
                 end
+				break
             end)
-            break
         end
 		if wasKeyPressed(VK_NUMPAD1) then
 			sampSetChatInputEnabled(true)
