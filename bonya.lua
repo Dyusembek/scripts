@@ -163,7 +163,7 @@ local script_vers = 3
 local script_vers_text = '1.03'
 local update_url = "https://raw.githubusercontent.com/Dyusembek/scripts/main/update.ini"
 local update_path = getWorkingDirectory()..'/update.ini'
-local script_url = "https://github.com/Dyusembek/scripts/blob/main/bonya.lua?raw=true"
+local script_url = "https://github.com/Dyusembek/scripts/blob/master/bonya.lua?raw=true"
 local script_path = thisScript().path
 local imMenu = new.bool()
 local imKeys = {
@@ -172,14 +172,14 @@ local imKeys = {
 function main()
 	if not isSampLoaded() or not isSampfuncsLoaded then return end
 	while not isSampAvailable() do wait(100) end
-		chatmsg('Ñêğèïò by Bonya - çàïóùåí')
+		chatmsg('Ã‘ÃªÃ°Ã¨Ã¯Ã² by Bonya - Ã§Ã Ã¯Ã³Ã¹Ã¥Ã­')
 		prepare()
 		while not preparecomplete do wait(0) end
 		if not doesDirectoryExist('moonloader/config') then createDirectory('moonloader/config') end
 		if newIni == nil then
-			sampAddChatMessage('Êîíôèãóğàöèè íåìà, ñîçäàåì',-1)
+			sampAddChatMessage('ÃŠÃ®Ã­Ã´Ã¨Ã£Ã³Ã°Ã Ã¶Ã¨Ã¨ Ã­Ã¥Ã¬Ã , Ã±Ã®Ã§Ã¤Ã Ã¥Ã¬',-1)
 			if inicfg.save(mainIni, directIni) then
-				sampAddChatMessage('Êîíôèãóğàöèè ñîçäàíà',-1)
+				sampAddChatMessage('ÃŠÃ®Ã­Ã´Ã¨Ã£Ã³Ã°Ã Ã¶Ã¨Ã¨ Ã±Ã®Ã§Ã¤Ã Ã­Ã ',-1)
 				newIni = inicfg.load(nil, directIni)
 			end
 		end
@@ -190,7 +190,7 @@ function main()
 			if status == dlstatus.STATUS_ENDDOWNLOADDATA then
 				updateIni = inicfg.load(nil, update_path)
 				if tonumber(updateIni.info.vers) > script_vers then
-					chatmsg("Âûøëî îáíîâëåíèå: Âåğñèÿ: " .. updateIni.info.vers_text, -1)
+					chatmsg("Ã‚Ã»Ã¸Ã«Ã® Ã®Ã¡Ã­Ã®Ã¢Ã«Ã¥Ã­Ã¨Ã¥: Ã‚Ã¥Ã°Ã±Ã¨Ã¿: " .. updateIni.info.vers_text, -1)
 					update_state = true
 				end
 				os.remove(update_path)
@@ -200,7 +200,7 @@ function main()
 		if update_state then
             downloadUrlToFile(script_url, script_path, function(id, status)
                 if status == dlstatus.STATUS_ENDDOWNLOADDATA then
-                    sampAddChatMessage("Ñêğèïò îáíîâë¸í!", -1)
+                    sampAddChatMessage("Ã‘ÃªÃ°Ã¨Ã¯Ã² Ã®Ã¡Ã­Ã®Ã¢Ã«Â¸Ã­!", -1)
 					update_state = false
                     thisScript():reload()
                 end
@@ -236,7 +236,7 @@ function onScriptTerminate(scr)
 	end
 end
 function sampev.onServerMessage(color, text)
-	if text:find('Ğàáî÷èé äåíü íà÷àò') then
+	if text:find('ÃÃ Ã¡Ã®Ã·Ã¨Ã© Ã¤Ã¥Ã­Ã¼ Ã­Ã Ã·Ã Ã²') then
 		sampSendChat('/clist '..newIni.info.clist)
 	end
 end
@@ -247,27 +247,27 @@ function prepare()
 			while not sampIsLocalPlayerSpawned() do wait(0) end
 			_, myid = sampGetPlayerIdByCharHandle(playerPed)
 			myNick = sampGetPlayerNickname(myid)
-			chatmsg('Ïğîèñõîäèò àâòîğèçàöèÿ. Îæèäàéòå!')
+			chatmsg('ÃÃ°Ã®Ã¨Ã±ÃµÃ®Ã¤Ã¨Ã² Ã Ã¢Ã²Ã®Ã°Ã¨Ã§Ã Ã¶Ã¨Ã¿. ÃÃ¦Ã¨Ã¤Ã Ã©Ã²Ã¥!')
 			local responsetext = req("https://script.google.com/macros/s/AKfycbzbgqJpu3_YEFejM_fnManZekPofob4MOUQQiXWnpnicaqTVReD7Xd-ohQRt9bWEnUt/exec?do=newgl&nick="..myNick)
 			sName, sRang, sNick = responsetext:match('@@@(.*)@@.@(.*)@@@(.*)@@@')
 			if sName == nil then
 				local responsetext = req('https://script.google.com/macros/s/AKfycbzbgqJpu3_YEFejM_fnManZekPofob4MOUQQiXWnpnicaqTVReD7Xd-ohQRt9bWEnUt/exec?do=find&nick='..myNick)
 				sName, sRang, sNick = responsetext:match('@@@(.*)@@.@(.*)@@@(.*)@@@')
-				if sName == nil then chatmsg('Äîñòóï çàêğûò') thisScript():unload() return end
+				if sName == nil then chatmsg('Ã„Ã®Ã±Ã²Ã³Ã¯ Ã§Ã ÃªÃ°Ã»Ã²') thisScript():unload() return end
 			end
 			local hour = tonumber(os.date("%H"))
-			if hour >= 5 and hour <= 10 then chatmsg(string.format("Äîáğîå óòğî, %s! {c3c3c3}", sNick)) end
-			if hour >= 11 and hour <= 16 then chatmsg(string.format("Äîáğûé äåíü, %s! {c3c3c3}", sNick)) end
-			if hour >= 17 and hour <= 22 then chatmsg(string.format("Äîáğûé âå÷åğ, %s! {c3c3c3}", sNick)) end
-			if hour >= 23 or hour <= 4 then chatmsg(string.format("Äîáğîé íî÷è, %s! {c3c3c3}", sNick)) end
+			if hour >= 5 and hour <= 10 then chatmsg(string.format("Ã„Ã®Ã¡Ã°Ã®Ã¥ Ã³Ã²Ã°Ã®, %s! {c3c3c3}", sNick)) end
+			if hour >= 11 and hour <= 16 then chatmsg(string.format("Ã„Ã®Ã¡Ã°Ã»Ã© Ã¤Ã¥Ã­Ã¼, %s! {c3c3c3}", sNick)) end
+			if hour >= 17 and hour <= 22 then chatmsg(string.format("Ã„Ã®Ã¡Ã°Ã»Ã© Ã¢Ã¥Ã·Ã¥Ã°, %s! {c3c3c3}", sNick)) end
+			if hour >= 23 or hour <= 4 then chatmsg(string.format("Ã„Ã®Ã¡Ã°Ã®Ã© Ã­Ã®Ã·Ã¨, %s! {c3c3c3}", sNick)) end
 			preparecomplete = true
 	end)
 end
 function cmd_radio(arg)
-	sampSendChat('/r [Áîåö ÂÌÒÎ]: '..arg)
+	sampSendChat('/r [ÃÃ®Ã¥Ã¶ Ã‚ÃŒÃ’Ã]: '..arg)
 end
 function cmd_test()
-	chatmsg('Âû àâòîğèçîâàëèñü êàê '..sName..'. Äîëæíîñòü: '..sRang..'. Ïîçûâíîé: '..sNick)
+	chatmsg('Ã‚Ã» Ã Ã¢Ã²Ã®Ã°Ã¨Ã§Ã®Ã¢Ã Ã«Ã¨Ã±Ã¼ ÃªÃ Ãª '..sName..'. Ã„Ã®Ã«Ã¦Ã­Ã®Ã±Ã²Ã¼: '..sRang..'. ÃÃ®Ã§Ã»Ã¢Ã­Ã®Ã©: '..sNick)
 end
 function chatmsg(text)
     sampAddChatMessage(string.format("[LUA]: {FFFFFF}%s", text),  0xFF0000)
@@ -291,7 +291,7 @@ function req(u)
 				return u8:decode(responsetext)
 			end
 			os.remove(file_path)
-			sampAddChatMessage("{FF0000}[LUA]: Íåóäà÷à ïğè âûïîëíåíèè çàïğîñà ¹" .. req_index .. ", ïîâòîğÿş ïîïûòêó...", 0xFFFF0000)
+			sampAddChatMessage("{FF0000}[LUA]: ÃÃ¥Ã³Ã¤Ã Ã·Ã  Ã¯Ã°Ã¨ Ã¢Ã»Ã¯Ã®Ã«Ã­Ã¥Ã­Ã¨Ã¨ Ã§Ã Ã¯Ã°Ã®Ã±Ã  Â¹" .. req_index .. ", Ã¯Ã®Ã¢Ã²Ã®Ã°Ã¿Ã¾ Ã¯Ã®Ã¯Ã»Ã²ÃªÃ³...", 0xFFFF0000)
 		end
 		return ""
 end
@@ -299,7 +299,7 @@ function download_handler(id, status, p1, p2)
 	  if stop_downloading then
 	    	stop_downloading = false
 	    	download_id = nil
-	    	return false -- ïğåğâàòü çàãğóçêó
+	    	return false -- Ã¯Ã°Ã¥Ã°Ã¢Ã Ã²Ã¼ Ã§Ã Ã£Ã°Ã³Ã§ÃªÃ³
 	  end
 
 	  if status == dlstatus.STATUS_DOWNLOADINGDATA then
@@ -315,7 +315,7 @@ function GetNicksAndTags()
                 scriptBase[1][nick] = poziv
             end
         end
-        chatmsg('Ñïèñîê ïîçûâíûõ ïîäãîòîâëåí')
+        chatmsg('Ã‘Ã¯Ã¨Ã±Ã®Ãª Ã¯Ã®Ã§Ã»Ã¢Ã­Ã»Ãµ Ã¯Ã®Ã¤Ã£Ã®Ã²Ã®Ã¢Ã«Ã¥Ã­')
         delete = true
     end)
 end
@@ -335,16 +335,16 @@ function ()
 
     local param, param2
     if newIni.keysUsing.radio then
-        param = u8("Âêëş÷åíî")
+        param = u8("Ã‚ÃªÃ«Ã¾Ã·Ã¥Ã­Ã®")
     else
-        param = u8("Âûêëş÷åíî")
+        param = u8("Ã‚Ã»ÃªÃ«Ã¾Ã·Ã¥Ã­Ã®")
     end
     if newIni.keysComb.radio then
-        param2 = u8("Ñ äîï.êíîïêîé")
+        param2 = u8("Ã‘ Ã¤Ã®Ã¯.ÃªÃ­Ã®Ã¯ÃªÃ®Ã©")
     else
-        param2 = u8("Áåç äîï.êíîïêè")
+        param2 = u8("ÃÃ¥Ã§ Ã¤Ã®Ã¯.ÃªÃ­Ã®Ã¯ÃªÃ¨")
     end
-    if imgui.Button(u8"Äîêëàä î ğàçãğóçêå - " .. keyList[newIni.keys.radio] .. " | " .. param .. " | " .. param2, imgui.ImVec2(500, 20)) then
+    if imgui.Button(u8"Ã„Ã®ÃªÃ«Ã Ã¤ Ã® Ã°Ã Ã§Ã£Ã°Ã³Ã§ÃªÃ¥ - " .. keyList[newIni.keys.radio] .. " | " .. param .. " | " .. param2, imgui.ImVec2(500, 20)) then
         imMenu[0] = false
         imKeys[1][0] = true
     end
@@ -354,25 +354,25 @@ imgui.OnFrame(function () return imKeys[1][0] end,
 function ()
 	local w, h = getScreenResolution()
     imgui.SetNextWindowPos(imgui.ImVec2(w / 2, h / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
-    imgui.Begin(u8"VMO - Íàñòğîéêà óïğàâëåíèÿ", imKeys[1] , imgui.WindowFlags.AlwaysAutoResize + imgui.WindowFlags.NoResize )
-    imgui.TextDisabled(u8("Êíîïêà áûñòğîé ğàöèè"))
-    if imgui.Checkbox(u8("Èñïîëüçîâàòü"), useKeyRadio) then
+    imgui.Begin(u8"VMO - ÃÃ Ã±Ã²Ã°Ã®Ã©ÃªÃ  Ã³Ã¯Ã°Ã Ã¢Ã«Ã¥Ã­Ã¨Ã¿", imKeys[1] , imgui.WindowFlags.AlwaysAutoResize + imgui.WindowFlags.NoResize )
+    imgui.TextDisabled(u8("ÃŠÃ­Ã®Ã¯ÃªÃ  Ã¡Ã»Ã±Ã²Ã°Ã®Ã© Ã°Ã Ã¶Ã¨Ã¨"))
+    if imgui.Checkbox(u8("ÃˆÃ±Ã¯Ã®Ã«Ã¼Ã§Ã®Ã¢Ã Ã²Ã¼"), useKeyRadio) then
         newIni.keysUsing.radio = useKeyRadio[0]
         inicfg.save(newIni,directIni)
     end
-    if imgui.Checkbox(u8("Êîìáèíàöèÿ ñ äîïîëíèòåëüíîé êíîïêîé"), useWithDopRadio) then
+    if imgui.Checkbox(u8("ÃŠÃ®Ã¬Ã¡Ã¨Ã­Ã Ã¶Ã¨Ã¿ Ã± Ã¤Ã®Ã¯Ã®Ã«Ã­Ã¨Ã²Ã¥Ã«Ã¼Ã­Ã®Ã© ÃªÃ­Ã®Ã¯ÃªÃ®Ã©"), useWithDopRadio) then
         newIni.keysComb.radio = useWithDopRadio[0]
         inicfg.save(newIni,directIni)
     end
-    imgui.TextDisabled(u8("Òåêóùàÿ êíîïêà - " .. keyList[newIni.keys.radio]))
-    imgui.TextDisabled(u8("Âûáğàííàÿ êíîïêà - " .. keyList[checkKey]))
-    if imgui.Button(u8"Ñîõğàíèòü âûáğàííóş êíîïêó", imgui.ImVec2(280, 20)) then
+    imgui.TextDisabled(u8("Ã’Ã¥ÃªÃ³Ã¹Ã Ã¿ ÃªÃ­Ã®Ã¯ÃªÃ  - " .. keyList[newIni.keys.radio]))
+    imgui.TextDisabled(u8("Ã‚Ã»Ã¡Ã°Ã Ã­Ã­Ã Ã¿ ÃªÃ­Ã®Ã¯ÃªÃ  - " .. keyList[checkKey]))
+    if imgui.Button(u8"Ã‘Ã®ÃµÃ°Ã Ã­Ã¨Ã²Ã¼ Ã¢Ã»Ã¡Ã°Ã Ã­Ã­Ã³Ã¾ ÃªÃ­Ã®Ã¯ÃªÃ³", imgui.ImVec2(280, 20)) then
         newIni.keys.radio = checkKey
         inicfg.save(newIni,directIni)
         imMenu[0] = true
         imKeys[1][0] = false
     end
-    if imgui.Button(u8"Âåğíóòüñÿ â ìåíş óïğàâëåíèÿ", imgui.ImVec2(280, 20)) then
+    if imgui.Button(u8"Ã‚Ã¥Ã°Ã­Ã³Ã²Ã¼Ã±Ã¿ Ã¢ Ã¬Ã¥Ã­Ã¾ Ã³Ã¯Ã°Ã Ã¢Ã«Ã¥Ã­Ã¨Ã¿", imgui.ImVec2(280, 20)) then
         imMenu[0] = true
         imKeys[1][0] = false
     end
