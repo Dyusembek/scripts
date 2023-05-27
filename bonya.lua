@@ -33,8 +33,8 @@ local preparecomplete = false
 local scriptBase = {
 	[1] = {},
 }
-local script_vers = 3
-local script_vers_text = '1.03'
+local script_vers = 2
+local script_vers_text = '1.02'
 local update_url = "https://raw.githubusercontent.com/Dyusembek/scripts/main/update.ini"
 local update_path = getWorkingDirectory()..'/update.ini'
 local script_url = "https://github.com/Dyusembek/scripts/blob/main/bonya.lua?raw=true"
@@ -76,10 +76,9 @@ function main()
                 if status == dlstatus.STATUS_ENDDOWNLOADDATA then
                     sampAddChatMessage("Скрипт обновлён!", -1)
 					update_state = false
-                    thisScript():reload()
                 end
-				break
             end)
+			break
         end
 		if wasKeyPressed(VK_NUMPAD1) then
 			sampSetChatInputEnabled(true)
